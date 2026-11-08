@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="description" content="Portfolio of Shivu GP — Java Developer and MCA graduate focused on building useful, reliable applications." />
+  <title>Shivu GP | Java Developer</title>
+  <style>
+    :root {
+      --bg: #0b1020; --panel: rgba(20, 29, 52, .76); --panel-solid: #141d34;
+      --text: #f3f6ff; --muted: #a6b1c8; --line: rgba(174, 194, 230, .16);
+      --cyan: #70e1f5; --lime: #c8f169; --violet: #a99bff;
+      --shadow: 0 24px 70px rgba(0,0,0,.28); --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0; color: var(--text); background:
+        radial-gradient(900px 520px at 90% -10%, rgba(112,225,245,.13), transparent 65%),
+        radial-gradient(760px 500px at -15% 30%, rgba(169,155,255,.13), transparent 60%),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65; overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .wrap { width: min(1120px, calc(100% - 42px)); margin: auto; }
+    .nav-shell { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(18px); background: rgba(11,16,32,.76); border-bottom: 1px solid var(--line); }
+    nav { height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 800; letter-spacing: -.04em; }
+    .brand-mark { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 12px; color: #0b1020; background: linear-gradient(135deg,var(--cyan),var(--lime)); font-size: 14px; }
+    .brand span:last-child { font-size: 15px; }
+    .nav-links { display: flex; align-items: center; gap: 27px; color: var(--muted); font-size: 13px; font-weight: 650; }
+    .nav-links a:hover { color: var(--cyan); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .menu-btn { display: none; border: 1px solid var(--line); background: var(--panel); color: var(--text); width: 42px; height: 42px; border-radius: 12px; cursor: pointer; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border-radius: 999px; padding: 12px 18px; font-size: 13px; font-weight: 750; border: 1px solid transparent; transition: .2s ease; cursor: pointer; }
+    .btn-primary { color: #0b1020; background: linear-gradient(110deg,var(--cyan),var(--lime)); box-shadow: 0 9px 30px rgba(112,225,245,.15); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(112,225,245,.23); }
+    .btn-ghost { border-color: var(--line); color: var(--text); background: rgba(255,255,255,.025); }
+    .btn-ghost:hover { border-color: rgba(112,225,245,.55); color: var(--cyan); transform: translateY(-2px); }
+    .hero { min-height: 670px; display: grid; grid-template-columns: 1.12fr .88fr; align-items: center; gap: 55px; padding-top: 70px; padding-bottom: 88px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; border: 1px solid rgba(200,241,105,.24); color: var(--lime); background: rgba(200,241,105,.06); border-radius: 999px; padding: 7px 12px; font-size: 11px; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+    .pulse { width: 7px; height: 7px; background: var(--lime); border-radius: 50%; box-shadow: 0 0 0 5px rgba(200,241,105,.1); }
+    h1 { font-size: clamp(46px, 6vw, 76px); line-height: 1.03; letter-spacing: -.065em; margin: 23px 0 20px; max-width: 700px; }
+    .gradient-text { background: linear-gradient(100deg,var(--cyan),#c7c0ff 58%,var(--lime)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-copy { color: var(--muted); font-size: 16px; max-width: 590px; margin: 0 0 28px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .micro { margin-top: 35px; display: flex; flex-wrap: wrap; gap: 22px; color: var(--muted); font-size: 12px; }
+    .micro strong { color: var(--text); font-size: 14px; display: block; }
+    .hero-visual { min-height: 430px; position: relative; display: grid; place-items: center; }
+    .orbit { width: min(390px, 100%); aspect-ratio: 1; border: 1px solid rgba(112,225,245,.18); border-radius: 50%; position: relative; display: grid; place-items: center; background: radial-gradient(circle,rgba(112,225,245,.08),rgba(169,155,255,.04) 48%,transparent 69%); }
+    .orbit:before,.orbit:after { content:""; position:absolute; inset: 8%; border: 1px dashed rgba(169,155,255,.25); border-radius:50%; transform: rotate(34deg) scaleX(.72); }
+    .orbit:after { transform: rotate(-42deg) scaleX(.72); border-color: rgba(200,241,105,.22); }
+    .avatar { width: 174px; height: 174px; display:grid; place-items:center; border-radius: 48px; transform: rotate(-7deg); background: linear-gradient(145deg,#182b46,#10182b); border: 1px solid rgba(255,255,255,.15); box-shadow: 0 25px 65px rgba(0,0,0,.45), inset 0 0 35px rgba(112,225,245,.1); font-size: 58px; font-weight: 850; letter-spacing: -.08em; color: var(--cyan); }
+    .float-card { position:absolute; z-index:2; padding: 12px 15px; background: rgba(20,29,52,.88); border: 1px solid var(--line); border-radius: 15px; box-shadow: var(--shadow); backdrop-filter: blur(12px); font-size: 12px; color: var(--muted); }
+    .float-card b { color: var(--text); display:block; font-size: 13px; }
+    .float-a { top: 13%; left: -1%; } .float-b { bottom: 14%; right: -1%; } .float-c { top: 50%; right: -9%; }
+    .float-icon { color: var(--lime); margin-right: 6px; }
+    .section { padding: 82px 0; }
+    .section-head { display:flex; align-items:end; justify-content:space-between; gap:25px; margin-bottom: 32px; }
+    .kicker { color: var(--cyan); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .16em; }
+    h2 { font-size: clamp(30px,4vw,43px); letter-spacing: -.05em; line-height: 1.1; margin: 8px 0 0; }
+    .section-intro { max-width: 470px; color: var(--muted); font-size: 14px; margin: 0; }
+    .about-grid { display:grid; grid-template-columns: 1.1fr .9fr; gap: 20px; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 27px; box-shadow: var(--shadow); }
+    .about-text { color: var(--muted); font-size: 14px; margin: 0; }
+    .about-text + .about-text { margin-top: 14px; }
+    .facts { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .fact { background: rgba(255,255,255,.035); border: 1px solid var(--line); border-radius: 16px; padding: 17px; }
+    .fact small { display:block; color:var(--muted); font-size:11px; margin-bottom:5px; }
+    .fact strong { font-size: 14px; }
+    .skills-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: 15px; }
+    .skill-card { padding: 22px; border-radius: 19px; border:1px solid var(--line); background: linear-gradient(145deg,rgba(20,29,52,.9),rgba(16,23,42,.65)); }
+    .skill-icon { width:38px; height:38px; display:grid; place-items:center; border-radius:12px; color:var(--cyan); background:rgba(112,225,245,.1); font-weight:800; margin-bottom:14px; }
+    .skill-card h3 { font-size:15px; margin:0 0 12px; }
+    .tags { display:flex; flex-wrap:wrap; gap:7px; }
+    .tag { border:1px solid var(--line); border-radius:999px; padding:5px 9px; font-size:11px; color:#c4cde0; background:rgba(255,255,255,.025); }
+    .projects { display:grid; grid-template-columns: repeat(2,1fr); gap:17px; }
+    .project { position:relative; overflow:hidden; }
+    .project:before { content:""; position:absolute; width:180px;height:180px;border-radius:50%;background:rgba(112,225,245,.08);filter:blur(3px);right:-85px;top:-95px; }
+    .project-top { display:flex; justify-content:space-between; gap:15px; align-items:center; margin-bottom:20px; position:relative; }
+    .project-number { color:var(--cyan); font-size:12px; font-weight:800; letter-spacing:.1em; }
+    .status { color:var(--lime); background:rgba(200,241,105,.08); border:1px solid rgba(200,241,105,.2); border-radius:999px; padding:5px 9px; font-size:10px; font-weight:750; }
+    .status.planned { color:#d1caff; background:rgba(169,155,255,.08); border-color:rgba(169,155,255,.2); }
+    .project h3 { font-size:20px; letter-spacing:-.03em; margin:0 0 9px; position:relative; }
+    .project p { color:var(--muted); font-size:13px; margin:0 0 18px; position:relative; }
+    .project ul { padding-left:18px; margin:0 0 18px; color:#c4cde0; font-size:12px; }
+    .project li { margin:5px 0; }
+    .education { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .edu-card { display:flex; gap:15px; }
+    .edu-mark { flex:0 0 42px; height:42px; display:grid; place-items:center; border-radius:13px; color:var(--lime); background:rgba(200,241,105,.09); font-weight:900; }
+    .edu-card h3 { margin:0 0 5px; font-size:15px; }
+    .edu-card p { color:var(--muted); margin:0; font-size:12px; }
+    .certs { display:flex; flex-wrap:wrap; gap:10px; }
+    .cert { border:1px solid var(--line); border-radius:14px; background:var(--panel); padding:11px 14px; font-size:12px; color:#d6deef; }
+    .contact-box { display:grid; grid-template-columns:1.2fr .8fr; align-items:center; gap:30px; padding:38px; border-radius:26px; border:1px solid rgba(112,225,245,.22); background: radial-gradient(600px 250px at 100% 0%,rgba(112,225,245,.12),transparent 65%),var(--panel); }
+    .contact-box p { color:var(--muted); font-size:14px; max-width:520px; }
+    .contact-details { display:grid; gap:12px; font-size:13px; }
+    .contact-details a { color:var(--cyan); overflow-wrap:anywhere; }
+    footer { border-top:1px solid var(--line); padding:25px 0; color:var(--muted); font-size:11px; }
+    .footer-inner { display:flex; justify-content:space-between; gap:15px; flex-wrap:wrap; }
+    .reveal { opacity:0; transform:translateY(18px); transition:opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    @media (max-width: 850px) {
+      .hero { grid-template-columns:1fr; gap:5px; padding-top:65px; }
+      .hero-visual { min-height:370px; }
+      .about-grid,.contact-box { grid-template-columns:1fr; }
+      .skills-grid { grid-template-columns:repeat(2,1fr); }
+      .nav-links { display:none; position:absolute; top:76px; left:0; right:0; padding:20px 24px 24px; background:#10182b; border-bottom:1px solid var(--line); flex-direction:column; align-items:flex-start; gap:17px; }
+      .nav-links.open { display:flex; }
+      .menu-btn { display:grid; place-items:center; }
+      .nav-actions .btn { display:none; }
+    }
+    @media (max-width: 600px) {
+      .wrap { width:min(100% - 30px,1120px); }
+      nav { height:68px; }
+      .nav-links { top:68px; }
+      .hero { min-height:auto; padding:54px 0 60px; }
+      h1 { font-size:48px; }
+      .hero-copy { font-size:14px; }
+      .hero-visual { min-height:310px; }
+      .orbit { width:290px; }
+      .avatar { width:135px;height:135px;border-radius:38px;font-size:46px; }
+      .float-card { font-size:10px;padding:9px 11px; }
+      .float-a { left:-2%; } .float-c { right:-2%; }
+      .section { padding:60px 0; }
+      .section-head { display:block; }
+      .section-intro { margin-top:13px; }
+      .skills-grid,.projects,.education { grid-template-columns:1fr; }
+      .panel { padding:21px; }
+      .contact-box { padding:25px; }
+      .facts { gap:8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *,*::before,*::after { transition:none !important; animation:none !important; }
+      .reveal { opacity:1; transform:none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-shell">
+    <nav class="wrap">
+      <a class="brand" href="#home" aria-label="Shivu GP home"><span class="brand-mark">SG</span><span>SHIVU GP<span style="color:var(--cyan)">.</span></span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#education">Education</a><a href="#contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a class="btn btn-primary" href="Shivu_GP_Resume.pdf" download>Download CV ↗</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      </div>
+    </nav>
+  </div>
+
+  <main>
+    <section class="hero wrap" id="home">
+      <div>
+        <div class="eyebrow"><span class="pulse"></span> Open to fresher opportunities</div>
+        <h1>Building useful<br/><span class="gradient-text">digital experiences.</span></h1>
+        <p class="hero-copy">Hi, I’m <strong style="color:var(--text)">Shivu GP</strong> — an MCA graduate and aspiring Java Developer. I enjoy turning requirements into practical applications, working with databases, and continuously strengthening my full-stack development skills.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">Explore my work <span>↘</span></a>
+          <a class="btn btn-ghost" href="mailto:shivugp2003@gmail.com">Let’s connect ↗</a>
+        </div>
+        <div class="micro">
+          <div><strong>Java</strong>Backend foundation</div>
+          <div><strong>React · Angular</strong>Frontend knowledge</div>
+          <div><strong>MCA</strong>2025 graduate</div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-label="Decorative initials graphic">
+        <div class="orbit">
+          <div class="avatar">SG</div>
+          <div class="float-card float-a"><b><span class="float-icon">✦</span>Java Developer</b>Building application logic</div>
+          <div class="float-card float-b"><b><span class="float-icon">⌘</span>Full-stack learner</b>Frontend + backend</div>
+          <div class="float-card float-c"><b><span class="float-icon">◎</span>Problem solver</b>Curious by default</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="about">
+      <div class="section-head reveal">
+        <div><div class="kicker">01 / About me</div><h2>A little about<br/>my journey.</h2></div>
+        <p class="section-intro">A foundation in software development, a practical project mindset, and the motivation to keep learning through real-world challenges.</p>
+      </div>
+      <div class="about-grid">
+        <div class="panel reveal">
+          <p class="about-text">I’m an MCA graduate from Seshadripuram College, Tumkur, with a foundation in Core and Advanced Java, SQL, JDBC, and MySQL. I also have frontend knowledge of React.js, Angular, JavaScript, HTML5, and CSS3, along with basic knowledge of Spring Boot and REST APIs.</p>
+          <p class="about-text">My academic projects have introduced me to workflow digitization, role-based processes, inventory operations, and database-backed applications. I’m interested in contributing to development teams where I can write clean code, understand requirements, troubleshoot issues, and grow as an engineer.</p>
+        </div>
+        <div class="facts reveal">
+          <div class="fact"><small>Location</small><strong>Tumkur, Karnataka</strong></div>
+          <div class="fact"><small>Qualification</small><strong>Master of Computer Applications</strong></div>
+          <div class="fact"><small>Graduation</small><strong>October 2025</strong></div>
+          <div class="fact"><small>Languages</small><strong>English · Kannada · Telugu</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="skills">
+      <div class="section-head reveal">
+        <div><div class="kicker">02 / Toolbox</div><h2>Skills I work with.</h2></div>
+        <p class="section-intro">A snapshot of the technologies and practices listed in my current resume. Spring Boot and REST APIs are at a basic-knowledge level.</p>
+      </div>
+      <div class="skills-grid">
+        <article class="skill-card reveal"><div class="skill-icon">01</div><h3>Programming</h3><div class="tags"><span class="tag">Core Java</span><span class="tag">Advanced Java</span><span class="tag">SQL</span><span class="tag">JavaScript</span><span class="tag">PHP</span></div></article>
+        <article class="skill-card reveal"><div class="skill-icon">02</div><h3>Backend & APIs</h3><div class="tags"><span class="tag">JDBC</span><span class="tag">Spring Boot · Basic</span><span class="tag">REST APIs · Basic</span></div></article>
+        <article class="skill-card reveal"><div class="skill-icon">03</div><h3>Frontend</h3><div class="tags"><span class="tag">React.js</span><span class="tag">Angular</span><span class="tag">HTML5</span><span class="tag">CSS3</span></div></article>
+        <article class="skill-card reveal"><div class="skill-icon">04</div><h3>Databases</h3><div class="tags"><span class="tag">MySQL</span><span class="tag">NoSQL</span></div></article>
+        <article class="skill-card reveal"><div class="skill-icon">05</div><h3>Tools</h3><div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Maven</span><span class="tag">XAMPP</span></div></article>
+        <article class="skill-card reveal"><div class="skill-icon">06</div><h3>Ways of working</h3><div class="tags"><span class="tag">Agile</span><span class="tag">Requirement understanding</span><span class="tag">Documentation</span><span class="tag">Stakeholder coordination</span></div></article>
+      </div>
+    </section>
+
+    <section class="section wrap" id="projects">
+      <div class="section-head reveal">
+        <div><div class="kicker">03 / Selected work</div><h2>Projects & practice.</h2></div>
+        <p class="section-intro">Academic work and a clearly identified planned learning project. Project descriptions reflect the information in my resume.</p>
+      </div>
+      <div class="projects">
+        <article class="panel project reveal">
+          <div class="project-top"><span class="project-number">PROJECT 01</span><span class="status">Academic project</span></div>
+          <h3>Crime Report — Online FIR System</h3>
+          <p>A full-stack academic application designed to digitize FIR filing and organize the reporting workflow.</p>
+          <ul><li>Organized the workflow around HQ, In-charge, Police, and User roles.</li><li>Designed the MySQL database schema and managed the database environment with XAMPP.</li><li>Focused on structured case lifecycle tracking and role-based processes.</li></ul>
+          <div class="tags"><span class="tag">MySQL</span><span class="tag">XAMPP</span><span class="tag">Full-stack application</span></div>
+        </article>
+        <article class="panel project reveal">
+          <div class="project-top"><span class="project-number">PROJECT 02</span><span class="status">Academic project</span></div>
+          <h3>Library Management System</h3>
+          <p>A Java-based library inventory application for organizing books, members, and persistent records.</p>
+          <ul><li>Built using Java, Maven, and JDBC.</li><li>Implemented database-backed inventory operations and member tracking.</li><li>Translated day-to-day library requirements into application logic.</li></ul>
+          <div class="tags"><span class="tag">Java</span><span class="tag">Maven</span><span class="tag">JDBC</span></div>
+        </article>
+        <article class="panel project reveal">
+          <div class="project-top"><span class="project-number">PROJECT 03</span><span class="status planned">Planned · Not implemented</span></div>
+          <h3>Microservices E-Commerce Order Management</h3>
+          <p>A planned portfolio project to learn how independent services can support customer, product, and order workflows.</p>
+          <ul><li>Learning objectives include Java and Spring Boot microservices.</li><li>Proposed REST API communication and MySQL persistence.</li><li>Planned Maven-based build and dependency management.</li></ul>
+          <div class="tags"><span class="tag">Planned: Spring Boot</span><span class="tag">REST APIs</span><span class="tag">MySQL</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section wrap" id="education">
+      <div class="section-head reveal">
+        <div><div class="kicker">04 / Background</div><h2>Education & credentials.</h2></div>
+        <p class="section-intro">Academic foundation and certifications supporting my development journey.</p>
+      </div>
+      <div class="education">
+        <div class="panel edu-card reveal"><div class="edu-mark">M</div><div><h3>Master of Computer Applications (MCA)</h3><p>Seshadripuram College, Tumkur</p><p>Dec 2023 – Oct 2025 · CGPA: 7.1</p></div></div>
+        <div class="panel edu-card reveal"><div class="edu-mark">B</div><div><h3>Bachelor of Computer Applications (BCA)</h3><p>Alvas College, Mudbidri</p><p>Jan 2020 – Jul 2023 · CGPA: 7.4</p></div></div>
+      </div>
+      <div style="height:22px"></div>
+      <div class="certs reveal">
+        <span class="cert">Java Backend — Accenture</span>
+        <span class="cert">Software Engineering Job Simulation — Accenture</span>
+        <span class="cert">Java Web Development — ATAS</span>
+        <span class="cert">TATA Data Visualization: Empowering Business with Effective Insights</span>
+      </div>
+      <div class="panel reveal" style="margin-top:18px">
+        <div class="kicker" style="margin-bottom:8px">Leadership & activities</div>
+        <p class="about-text">Leadership and stakeholder coordination through the Rovers and Rangers forum at Alvas College; coordinated student activities and events. Participated in inter-college sports tournaments and IT fests.</p>
+      </div>
+    </section>
+
+    <section class="section wrap" id="contact">
+      <div class="contact-box reveal">
+        <div>
+          <div class="kicker">05 / Get in touch</div>
+          <h2>Have an opportunity<br/>or a project in mind?</h2>
+          <p>I’m open to fresher opportunities where I can contribute, learn from experienced teammates, and grow as a developer. Feel free to reach out.</p>
+          <a class="btn btn-primary" href="mailto:shivugp2003@gmail.com?subject=Opportunity%20for%20Shivu%20GP">Send me an email ↗</a>
+        </div>
+        <div class="contact-details">
+          <div><span style="color:var(--muted);display:block;font-size:11px">EMAIL</span><a href="mailto:shivugp2003@gmail.com">shivugp2003@gmail.com</a></div>
+          <div><span style="color:var(--muted);display:block;font-size:11px">PHONE</span><a href="tel:+919019972306">+91 9019972306</a></div>
+          <div><span style="color:var(--muted);display:block;font-size:11px">LOCATION</span><span>Tumkur, Karnataka, India</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-inner"><span>© <span id="year"></span> Shivu GP. Built with curiosity and code.</span><a href="#home">Back to top ↑</a></div></footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtn.textContent = open ? '×' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = '☰';
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
